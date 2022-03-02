@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  homepage-front:
+    build: ./homepage_front
+    ports:
+      - 8080:8080
+    depends_on:
+      - homepage-api
+  homepage-database:
+    image: mariadb
+    volumes: 
+      - homepage_data:/var/lib/mariadb
+    environment:
+      - MARIADB_ROOT_PASSWORD=passwordOfTheRoot
+      - MARIADB_USER=Rihyette
+      - MARIADB_PASSWORD=password
+      - MARIADB_DATABASE=homepage
+    networks:
+      - backend
+  homepage-api:
+    build: ./homepage_back
+    depends_on:
+      - homepage-database
+    networks:
+      - backend
+    links: 
+      - homepage-database
+    ports:
+      - 3000:3000
+    volumes:
+      - ./homepage_back:/app
+volumes:
+  homepage_data: {}
+networks:
+  backend:
