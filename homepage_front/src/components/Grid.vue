@@ -24,7 +24,7 @@ export default {
 .grid {
   width: 950px;
   max-width: 1500px;
-  min-width: 400px;
+  //min-width: 400px;
   margin: auto;
   padding: 20px;
   &__wrapper {
@@ -33,10 +33,10 @@ export default {
     grid-gap: 10px;
   }
   &__titleWrapper {
-      padding: 10px 0;
+    padding: 10px 0;
   }
   &__title {
-      margin: 0;
+    margin: 0;
   }
 }
 </style>

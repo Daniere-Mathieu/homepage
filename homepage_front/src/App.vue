@@ -20,9 +20,17 @@ export default {
   color: #c2f2f2;
   font-family: "Roboto", sans-serif;
 }
+html{
+  width: 100%;
+  margin: auto;
+}
 body {
   margin: 0;
-  background: #182f4d;
+  //background: #182f4d;
+  // width: fit-content;
+  background: #133e76;
+    width: fit-content;
+    margin: auto;
 }
 a {
   color: #c2f2f2;
@@ -40,7 +48,7 @@ a:hover {
   &__wrapper {
     width: 950px;
     max-width: 1500px;
-    min-width: 400px;
+    // min-width: 400px;
     margin: auto;
     background: #182f4d;
     height: 100%;

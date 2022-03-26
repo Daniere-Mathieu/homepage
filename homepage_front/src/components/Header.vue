@@ -53,7 +53,7 @@ export default {
 .navMenu {
   width: 950px;
   max-width: 1500px;
-  min-width: 400px;
+  //min-width: 400px;
   height: 100%;
   margin: auto;
   display: flex;

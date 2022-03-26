@@ -130,7 +130,7 @@ export default {
 .hours {
   width: 950px;
   max-width: 1500px;
-  min-width: 400px;
+  //min-width: 400px;
   margin: auto;
   align-items: center;
   font-size: 4rem;
@@ -143,6 +143,51 @@ export default {
     display: flex;
     justify-content: center;
     border: #142740 solid 1px;
+  }
+}
+@media screen and (max-width: 950px) {
+  body {
+    width: 100%;
+  }
+  .grid__wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .main__wrapper {
+    width: 100%;
+  }
+  .grid {
+    width: 100%;
+  }
+  .hours{
+    width: 100%;
+  }
+  .navMenu{
+    width: 100%;
+  }
+}
+@media screen and (max-width: 750px) {
+
+  .grid__wrapper {
+    grid-template-columns: repeat(1, 2fr);
+  }
+  .card__title {
+    font-size: 40px;
+  }
+  .card__listItem > a {
+    font-size: 45px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .card__list{
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media screen and (max-width: 400px) {
+  .card__title {
+    font-size: 30px;
+  }
+  .card__listItem > a {
+    font-size: 35px;
   }
 }
 </style>
