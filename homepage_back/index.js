@@ -7,5 +7,5 @@ app.get('/userInformation', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`The API is running at port: ${port}`)
+  console.log(`The api is running at port: ${port}`)
 })

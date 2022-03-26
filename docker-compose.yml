@@ -18,6 +18,8 @@ services:
       - MARIADB_DATABASE=homepage
     networks:
       - backend
+    ports:
+      - 3306:3306
   homepage-api:
     build: ./homepage_back
     depends_on:
