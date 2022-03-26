@@ -12,8 +12,8 @@
           </router-link>
         </div>
         <div class="navMenu__link">
-          <router-link to="/">Home</router-link>
-          <router-link to="/api">API</router-link>
+          <router-link to="/" class="navMenu__linkItem">Home</router-link>
+          <router-link to="/api" class="navMenu__linkItem">API</router-link>
         </div>
       </div>
       <div class="navMenu__right">

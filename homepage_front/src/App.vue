@@ -29,8 +29,8 @@ body {
   //background: #182f4d;
   // width: fit-content;
   background: #133e76;
-    width: fit-content;
-    margin: auto;
+    // width: fit-content;
+    // margin: auto;
 }
 a {
   color: #c2f2f2;

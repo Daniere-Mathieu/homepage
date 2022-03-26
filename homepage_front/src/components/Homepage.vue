@@ -164,6 +164,15 @@ export default {
   .navMenu{
     width: 100%;
   }
+  .card__title {
+    font-size: 30px;
+  }
+  .card__listItem > a {
+    font-size: 25px;
+  }
+  .navMenu__linkItem{
+    font-size: 20px;
+  }
 }
 @media screen and (max-width: 750px) {
 
@@ -175,6 +184,9 @@ export default {
   }
   .card__listItem > a {
     font-size: 45px;
+  }
+  .navMenu__linkItem{
+    font-size: 30px;
   }
 }
 @media screen and (max-width: 600px) {
@@ -188,6 +200,9 @@ export default {
   }
   .card__listItem > a {
     font-size: 35px;
+  }
+  .navMenu__linkItem{
+    font-size: 25px;
   }
 }
 </style>
