@@ -8,7 +8,7 @@
               <input
                 type="text"
                 name="cocktail__search"
-                id=""
+                id
                 class="cocktail__input"
                 placeholder="Search a Cocktail"
                 @keydown.enter="searchCocktail($event)"
@@ -16,14 +16,10 @@
               <div v-if="search">
                 <h1>{{ CocktailResult[0].drinks[0].strDrink }}</h1>
                 <div class="card__image__wrapper">
-                  <img
-                    :src="CocktailResult[0].drinks[0].strDrinkThumb"
-                    alt=""
-                    class="cockail__image"
-                  />
-                  <div class="card__image__description">
-                    {{ CocktailResult[0].drinks[0].strInstructions }}
-                  </div>
+                  <img :src="CocktailResult[0].drinks[0].strDrinkThumb" alt class="cockail__image" />
+                  <div
+                    class="card__image__description"
+                  >{{ CocktailResult[0].drinks[0].strInstructions }}</div>
                   <div>
                     <ul class="cocktail__list">
                       <li>{{ CocktailResult[0].drinks[0].strIngredient1 }}</li>
@@ -50,21 +46,11 @@
         </Card>
       </div>
       <Grid titleGrid="Random cocktail">
-        <Card
-          :titleName="item.drinks[0].strDrink"
-          v-for="(item, index) in posts"
-          :key="index"
-        >
+        <Card :titleName="item.drinks[0].strDrink" v-for="(item, index) in posts" :key="index">
           <template v-slot:content>
             <div class="card__image__wrapper">
-              <img
-                :src="item.drinks[0].strDrinkThumb"
-                alt=""
-                class="card__image"
-              />
-              <div class="card__image__description">
-                {{ item.drinks[0].strInstructions }}
-              </div>
+              <img :src="item.drinks[0].strDrinkThumb" alt class="card__image" />
+              <div class="card__image__description">{{ item.drinks[0].strInstructions }}</div>
             </div>
           </template>
         </Card>
@@ -94,6 +80,15 @@ export default {
   methods: {
     searchCocktail(event) {
       let cocktail = event.target.value;
+      const mySentence = cocktail
+      const words = mySentence.split(" ");
+
+      for (let i = 0; i < words.length; i++) {
+        words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+      }
+
+      cocktail = words.join(" ");
+
       event.target.value = "";
       axios
         .get(
@@ -101,7 +96,6 @@ export default {
         )
         .then((response) => {
           this.CocktailResult[0] = response.data;
-          console.log(this.CocktailResult[0]);
           this.search = true;
         })
         .catch((e) => {
@@ -150,6 +144,18 @@ export default {
   }
   &__wrapper__search {
     width: 100%;
+  }
+}
+.card__image {
+  object-fit: cover;
+}
+@media screen and (max-width: 700px) {
+  .cocktail__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cocktail__list > * {
+    margin: 2px 5px;
   }
 }
 </style>

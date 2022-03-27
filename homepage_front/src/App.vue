@@ -52,7 +52,7 @@ a:hover {
     margin: auto;
     background: #182f4d;
     height: 100%;
-    min-height: 900px;
+    min-height: 1000px;
   }
 }
 </style>

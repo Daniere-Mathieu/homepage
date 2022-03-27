@@ -165,7 +165,7 @@ export default {
     width: 100%;
   }
   .card__title {
-    font-size: 30px;
+    font-size: 20px;
   }
   .card__listItem > a {
     font-size: 25px;
@@ -175,34 +175,23 @@ export default {
   }
 }
 @media screen and (max-width: 750px) {
-
   .grid__wrapper {
     grid-template-columns: repeat(1, 2fr);
-  }
-  .card__title {
-    font-size: 40px;
-  }
-  .card__listItem > a {
-    font-size: 45px;
-  }
-  .navMenu__linkItem{
-    font-size: 30px;
   }
 }
 @media screen and (max-width: 600px) {
   .card__list{
     grid-template-columns: repeat(1, 1fr);
   }
+  .navMenu__inputSearch{
+    width: 220px;
+    padding: 15px;
+  }
 }
-@media screen and (max-width: 400px) {
-  .card__title {
-    font-size: 30px;
-  }
-  .card__listItem > a {
-    font-size: 35px;
-  }
-  .navMenu__linkItem{
-    font-size: 25px;
+@media screen and (max-width: 350px) {
+  .navMenu__inputSearch{
+    width: 170px;
+    padding: 15px;
   }
 }
 </style>

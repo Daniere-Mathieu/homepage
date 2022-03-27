@@ -168,4 +168,36 @@ export default {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+.jikan__search__wrapper{}
+@media screen and (max-width: 950px) {
+  body {
+    width: 100%;
+  }
+  .jikan__search__wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .main__wrapper {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 750px) {
+  .jikan__search__wrapper {
+    grid-template-columns: repeat(1, 2fr);
+  }
+}
+@media screen and (max-width: 600px) {
+  .jikan__search__wrapper{
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .navMenu__inputSearch{
+    width: 220px;
+    padding: 15px;
+  }
+}
+@media screen and (max-width: 350px) {
+  .navMenu__inputSearch{
+    width: 170px;
+    padding: 15px;
+  }
+}
 </style>

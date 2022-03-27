@@ -63,7 +63,7 @@
           </template>
         </Card>
       </div>
-      <Grid titleGrid="Random cocktail">
+      <Grid titleGrid="Random pokemon">
         <Card
           :titleName="item.name"
           v-for="(item, index) in posts"
@@ -114,6 +114,7 @@ export default {
   methods: {
     searchPokemon(event) {
       let pokemon = event.target.value;
+      pokemon = pokemon.toLowerCase()
       event.target.value = "";
       axios
         .get(`https://pokeapi.co/api/v2/pokemon/` + pokemon)
@@ -190,5 +191,11 @@ export default {
 }
 .card__image__description {
   margin: 0px 5px 0px 0px;
+}
+@media screen and (max-width: 700px) {
+  .pokemon__stat{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 </style>
