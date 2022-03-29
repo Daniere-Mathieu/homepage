@@ -1,0 +1,4 @@
+INSERT INTO user(username) VALUES ('Rihyette');
+INSERT INTO theme(`user`,`content_name`) VALUES (1,"testTheme");
+INSERT INTO category(theme,content_name) VALUES (1,"testCategory");
+INSERT INTO link(category,link,content_name) VALUES (1,"http://localhost:8080/","testLien");
