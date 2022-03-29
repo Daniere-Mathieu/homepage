@@ -1,0 +1,8 @@
+la partit back se découpe en 2 morceau types et src , types est la ou sont defini les classe / types genre les exceptions .
+src contients le reste a savoir le fichier index.ts qui contient le lancement de express etc , config.ts qui contient un objet de configuration .
+il contient un sous dossier utils qui contient les fichier ts utilitaire comme xeceptions.ts qui renvoie les erreur.
+il contient un autre sous dossier ressources qui contient toute la logique , comme les controllers et les services , pour tous les types qui en ont besoin .
+les service rélalise toutes la logique et les controller renvoie les routes .
+et comme dernier sous dossier , il dispose du dossier middlewares qui gere les middlewares , par exemple celui de express les fichier sont nommée nom.handler.ts
+
+origin de l'archi : https://www.alsacreations.com/tuto/lire/1857-Creation-dune-API-REST-avec-Express-et-TypeScript.html
