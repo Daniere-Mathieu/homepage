@@ -22,6 +22,7 @@ npm run build
 ```
 ![Alt text](fullscreenscreen.png)
 ![Alt text](smartphonescreen.png)
+
 IF you want to start the back-end part you need to do this
 ```
 # Download the dependances for Express and Typescript
