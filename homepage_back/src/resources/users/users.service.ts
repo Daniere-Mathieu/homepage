@@ -1,48 +1,30 @@
 import type { User } from '~~/types/users'
 import { NotFoundException } from '~/utils/exceptions'
-
-export class PetsService {
-  /**
-   * On copie localement les animaux pour pouvoir insérer, supprimer etc
-   */
-    users: User[]
-  /**
-   * Trouve tous les animaux
-   */
-  findAll(): User[] | false {
+const mysql = require('mysql2/promise');
+export class UsersService{
+  async findAll(): Promise<object[]> {
+    const connection = await mysql.createConnection({host:'localhost', user: 'Rihyette', password: "password",database: 'homepage'});
+    const [rows] = await connection.execute('SELECT * FROM `user`');
+    return rows
   }
-
-  /**
-   * Trouve un animal en particulier
-   * @param id - ID unique de l'animal
-   */
-  findOne(id: number): Pet | undefined {
+  async findOne(id: number): Promise<object[]> {
+    const connection = await mysql.createConnection({host:'localhost', user: 'Rihyette', password: "password",database: 'homepage'});
+    const [rows] = await connection.execute('SELECT * FROM `user` WHERE id = ?',[id]);
+    return rows
   }
-
-  /**
-   * Met à jour un animal en particulier
-   *
-   * /!\ Idéalement, il faudrait vérifier le contenu de la requête avant de le sauvegarder.
-   *
-   * @param petData - Un objet correspondant à un animal, il ne contient pas forcément tout un animal. Attention, on ne prend pas l'id avec.
-   * @param id - ID unique de l'animal
-   */
-  update(petData: Partial<Pet>, id: number): Pet | undefined {
+  async update(username: string, id: number): Promise<object[]> {
+    const connection = await mysql.createConnection({host:'localhost', user: 'Rihyette', password: "password",database: 'homepage'});
+    const [rows] = await connection.execute('UPDATE `user` SET `username` = ? WHERE `user`.`id` = ?',[username,id]);
+    return rows
   }
-
-  /**
-   * Créé un animal
-   *
-   * /!\ Idéalement, il faudrait vérifier le contenu de la requête avant de le sauvegarder.
-   *
-   * @param petData - Un objet correspondant à un animal. Attention, on ne prend pas l'id avec.
-   */
-  create(petData: Omit<Pet, 'id'>): Pet {
+  async create(username: string): Promise<object[]> {
+    const connection = await mysql.createConnection({host:'localhost', user: 'Rihyette', password: "password",database: 'homepage'});
+    const [rows] = await connection.execute('INSERT INTO `user` (`username`) VALUES (?)',[username]);
+    return rows
   }
-
-  /**
-   * Suppression d'un animal
-   */
-  delete(id: number) {
+  async delete(id: number) : Promise<object[]> {
+    const connection = await mysql.createConnection({host:'localhost', user: 'Rihyette', password: "password",database: 'homepage'});
+    const [rows] = await connection.execute('DELETE FROM `user` WHERE `user`.`id` = ?',[id]);
+    return rows
   }
 }

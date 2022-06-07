@@ -1,19 +1,18 @@
 import { Router } from 'express'
-import { UsersService } from '~/resources/users/users.service'
+import { LinksService } from '~/resources/link/links.service'
 import { BadRequestException, NotFoundException } from '~/utils/exceptions'
 /**
  * Nous créeons un `Router` Express, il nous permet de créer des routes en dehors du fichier `src/index.ts`
  */
-const UsersController = Router()
+const LinksController = Router()
 /**
  * Instance de notre service
  */
-const service = new UsersService()
-
+const service = new LinksService()
 /**
  * Trouve tous les animaux
  */
- UsersController.get('/', (req:any, res:any) => {
+ LinksController.get('/', (req:any, res:any) => {
     service.findAll().then((value => {
         return res
     .status(200)
@@ -24,7 +23,7 @@ const service = new UsersService()
 /**
  * Trouve un animal en particulier
  */
- UsersController.get('/:id', (req:any, res:any) => {
+ LinksController.get('/:id', (req:any, res:any) => {
   const id = Number(req.params.id)
 
   if (!Number.isInteger(id)) {
@@ -45,35 +44,35 @@ const service = new UsersService()
 /**
  * Créé un animal
  */
- UsersController.post('/create', (req:any, res:any) => {
-  const createdUser = service.create(req.body.name)
+ LinksController.post('/create', (req:any, res:any) => {
+  const createdLink = service.create(req.body.name,req.body.link,req.body.category)
 
   return res
     .status(201)
-    .json(createdUser)
+    .json(createdLink)
 })
 
 /**
  * Mise à jour d'un animal
  */
- UsersController.patch('/:id', (req:any, res:any) => {
+ LinksController.patch('/:id', (req:any, res:any) => {
   const id = Number(req.params.id)
 
   if (!Number.isInteger(id)) {
     throw new BadRequestException('ID invalide')
   }
 
-  const updatedUser = service.update(req.body.name, id)
+  const updatedLink = service.update(req.body.name ,req.body.link ,id,req.body.category)
 
   return res
     .status(200)
-    .json(updatedUser)
+    .json(updatedLink)
 })
 
 /**
  * Suppression d'un animal
  */
- UsersController.delete('/:id', (req:any, res:any) => {
+ LinksController.delete('/:id', (req:any, res:any) => {
   const id = Number(req.params.id)
 
   if (!Number.isInteger(id)) {
@@ -88,4 +87,4 @@ const service = new UsersService()
 /**
  * On expose notre controller pour l'utiliser dans `src/index.ts`
  */
-export { UsersController }
+export { LinksController }

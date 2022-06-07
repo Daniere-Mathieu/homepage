@@ -1,19 +1,18 @@
 import { Router } from 'express'
-import { UsersService } from '~/resources/users/users.service'
+import { CategoriesService } from '~/resources/categories/categories.service'
 import { BadRequestException, NotFoundException } from '~/utils/exceptions'
 /**
  * Nous créeons un `Router` Express, il nous permet de créer des routes en dehors du fichier `src/index.ts`
  */
-const UsersController = Router()
+const CategoriesController = Router()
 /**
  * Instance de notre service
  */
-const service = new UsersService()
-
+const service = new CategoriesService()
 /**
  * Trouve tous les animaux
  */
- UsersController.get('/', (req:any, res:any) => {
+ CategoriesController.get('/', (req:any, res:any) => {
     service.findAll().then((value => {
         return res
     .status(200)
@@ -24,7 +23,7 @@ const service = new UsersService()
 /**
  * Trouve un animal en particulier
  */
- UsersController.get('/:id', (req:any, res:any) => {
+ CategoriesController.get('/:id', (req:any, res:any) => {
   const id = Number(req.params.id)
 
   if (!Number.isInteger(id)) {
@@ -45,35 +44,36 @@ const service = new UsersService()
 /**
  * Créé un animal
  */
- UsersController.post('/create', (req:any, res:any) => {
-  const createdUser = service.create(req.body.name)
+ CategoriesController.post('/create', (req:any, res:any) => {
+     console.log(req.body)
+  const createdCategory = service.create(req.body.name,req.body.theme)
 
   return res
     .status(201)
-    .json(createdUser)
+    .json(createdCategory)
 })
 
 /**
  * Mise à jour d'un animal
  */
- UsersController.patch('/:id', (req:any, res:any) => {
+ CategoriesController.patch('/:id', (req:any, res:any) => {
   const id = Number(req.params.id)
 
   if (!Number.isInteger(id)) {
     throw new BadRequestException('ID invalide')
   }
 
-  const updatedUser = service.update(req.body.name, id)
+  const updatedCategory = service.update(req.body.name,id,req.body.theme)
 
   return res
     .status(200)
-    .json(updatedUser)
+    .json(updatedCategory)
 })
 
 /**
  * Suppression d'un animal
  */
- UsersController.delete('/:id', (req:any, res:any) => {
+ CategoriesController.delete('/:id', (req:any, res:any) => {
   const id = Number(req.params.id)
 
   if (!Number.isInteger(id)) {
@@ -88,4 +88,4 @@ const service = new UsersService()
 /**
  * On expose notre controller pour l'utiliser dans `src/index.ts`
  */
-export { UsersController }
+export { CategoriesController }
