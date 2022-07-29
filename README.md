@@ -1,6 +1,7 @@
 **Homepage** is a simple web application , it have to goal to be upgradable.
 
 Currently the application is divide in two part , one is the front-end part and the other is the back-end part.
+the objective is too have lots of small micro-service who can be added in the project to unlock more functionnality when needed
 
 The front-end part is write in VueJS 3 and in SCSS , this part is currently responsive and use some api like cocktail api (https://www.thecocktaildb.com/api.php).
 
