@@ -1,17 +1,11 @@
 import { Router } from 'express'
 import { ThemesService } from '~/resources/themes/themes.service'
 import { BadRequestException, NotFoundException } from '~/utils/exceptions'
-/**
- * Nous créeons un `Router` Express, il nous permet de créer des routes en dehors du fichier `src/index.ts`
- */
+
 const ThemesController = Router()
-/**
- * Instance de notre service
- */
+
 const service = new ThemesService()
-/**
- * Trouve tous les animaux
- */
+
  ThemesController.get('/', (req:any, res:any) => {
     service.findAll().then((value => {
         return res
@@ -20,41 +14,45 @@ const service = new ThemesService()
     }))
 })
 
-/**
- * Trouve un animal en particulier
- */
- ThemesController.get('/:id', (req:any, res:any) => {
-  const id = Number(req.params.id)
 
-  if (!Number.isInteger(id)) {
+ ThemesController.get('/:id', (req:any, res:any) => {
+  const themeID = Number(req.params.id)
+
+  if (!Number.isInteger(themeID)) {
     throw new BadRequestException('ID non valide')
   }
 
-   service.findOne(id).then(user => {
-    if (!user) {
-        throw new NotFoundException('Animal introuvable')
+   service.findOne(themeID).then(theme => {
+    if (!theme) {
+        throw new NotFoundException('Theme unfindable')
       }
     
       return res
         .status(200)
-        .json(user)
+        .json(theme)
   } )
 })
 
-/**
- * Créé un animal
- */
+
  ThemesController.post('/create', (req:any, res:any) => {
-  const createdTheme = service.create(req.body.name,req.body.user)
+  if(typeof(req.body.name) !== "string" || req.body.user !== "number"){
+    throw new BadRequestException('invalid type parameters')
+  }
+  let name = req.body.name
+  let userID = req.body.user
+  service.findOne(userID).then(theme => {
+    if (!theme) {
+        throw new NotFoundException('Theme unfindable')
+      }
+  } )
+  const createdTheme = service.create(name,userID)
 
   return res
     .status(201)
     .json(createdTheme)
 })
 
-/**
- * Mise à jour d'un animal
- */
+
  ThemesController.patch('/:id', (req:any, res:any) => {
   const id = Number(req.params.id)
 
@@ -69,9 +67,6 @@ const service = new ThemesService()
     .json(updatedTheme)
 })
 
-/**
- * Suppression d'un animal
- */
  ThemesController.delete('/:id', (req:any, res:any) => {
   const id = Number(req.params.id)
 
@@ -84,7 +79,5 @@ const service = new ThemesService()
     .json(service.delete(id))
 })
 
-/**
- * On expose notre controller pour l'utiliser dans `src/index.ts`
- */
+
 export { ThemesController }
