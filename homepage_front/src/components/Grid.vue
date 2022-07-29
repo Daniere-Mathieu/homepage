@@ -2,6 +2,7 @@
   <div class="grid">
     <div class="grid__titleWrapper">
       <h1 class="grid__title">{{ titleGrid }}</h1>
+      <h1 class="grid__add">+</h1>
     </div>
     <div class="grid__wrapper">
       <slot />
@@ -34,9 +35,17 @@ export default {
   }
   &__titleWrapper {
     padding: 10px 0;
+    display: flex;
   }
   &__title {
     margin: 0;
+    width: 100%;
+  }
+  &__add{
+    flex-shrink: 0;
+    margin: 0;
+    font-family: none;
+    cursor: pointer;
   }
 }
 </style>

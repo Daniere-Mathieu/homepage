@@ -83,17 +83,23 @@
         </Card>
       </Grid>
     </div>
+    <!-- <MineSweeper></MineSweeper> -->
+    <AddTheme></AddTheme>
   </main>
 </template>
 
 <script>
 import Card from "./Card.vue";
 import Grid from "./Grid.vue";
+// import MineSweeper from "./MineSweeper"
+import AddTheme from "./AddTheme"
 export default {
   name: "Homepage",
   components: {
     Card,
     Grid,
+    // MineSweeper,
+    AddTheme,
   },
   methods: {
     getTime() {
