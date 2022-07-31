@@ -1,7 +1,7 @@
 FROM node:lts-alpine
 WORKDIR /app
 COPY package*.json ./
-RUN npm install && npm install -g nodemon
+RUN npm install --force && npm install --force -g nodemon
 COPY . .
 EXPOSE 3000
-CMD [ "mpm", "dev"]
+CMD [ "npm", "run" ,"dev"]

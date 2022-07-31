@@ -2,7 +2,7 @@
   <div class="grid">
     <div class="grid__titleWrapper">
       <h1 class="grid__title">{{ titleGrid }}</h1>
-      <h1 class="grid__add">+</h1>
+      <h1 class="grid__add" @click="open">+</h1>
     </div>
     <div class="grid__wrapper">
       <slot />
@@ -18,6 +18,12 @@ export default {
       type: String,
     },
   },
+  methods: {
+    open(){
+      console.log('test')
+      this.$emit('open',true)
+    }
+  }
 };
 </script>
 

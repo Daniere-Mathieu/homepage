@@ -6,7 +6,7 @@
           <span>{{ actualHours }}</span>
         </div>
       </div>
-      <Grid titleGrid="Work">
+      <Grid titleGrid="Work" @open="displayTheme">
         <Card titleName="Global Dev">
           <template v-slot:content>
             <ul class="card__list">
@@ -84,7 +84,8 @@
       </Grid>
     </div>
     <!-- <MineSweeper></MineSweeper> -->
-    <AddTheme></AddTheme>
+    <User v-if="userIsOpen" @close="displayUser"/>
+    <AddTheme v-if="addThemeIsOpen" @close="displayTheme"/>
   </main>
 </template>
 
@@ -92,6 +93,7 @@
 import Card from "./Card.vue";
 import Grid from "./Grid.vue";
 // import MineSweeper from "./MineSweeper"
+import User from './User.vue'
 import AddTheme from "./AddTheme"
 export default {
   name: "Homepage",
@@ -100,8 +102,16 @@ export default {
     Grid,
     // MineSweeper,
     AddTheme,
+    User,
   },
   methods: {
+    displayUser(i){
+      this.userIsOpen = i;
+    },
+    displayTheme(i) {
+      console.log(i)
+      this.addThemeIsOpen = i;
+    },
     getTime() {
       const today = new Date();
       let hours = today.getHours();
@@ -127,6 +137,8 @@ export default {
     return {
       actualHours: "",
       interval: null,
+      userIsOpen: true,
+      addThemeIsOpen: false
     };
   },
 };
