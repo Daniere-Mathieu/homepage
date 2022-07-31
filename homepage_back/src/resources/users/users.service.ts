@@ -12,6 +12,11 @@ export class UsersService{
     const [rows] = await connection.execute('SELECT * FROM `user` WHERE id = ?',[id]);
     return rows
   }
+  async findOneByName(name: string): Promise<object[]> {
+    const connection = await mysql.createConnection({host:'localhost', user: 'Rihyette', password: "password",database: 'homepage'});
+    const [rows] = await connection.execute('SELECT * FROM `user` WHERE username = ?',[name]);
+    return rows
+  }
   async update(username: string, id: number): Promise<object[]> {
     const connection = await mysql.createConnection({host:'localhost', user: 'Rihyette', password: "password",database: 'homepage'});
     const [rows] = await connection.execute('UPDATE `user` SET `username` = ? WHERE `user`.`id` = ?',[username,id]);
